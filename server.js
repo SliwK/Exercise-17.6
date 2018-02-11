@@ -12,9 +12,6 @@ app.get('/', function (req, res) {
     res.send('Hello world!');
 });
 
-app.get('/store', function (req, res) {
-    res.send('To jest sklep');
-});
 
 app.get('/first-template', function(req, res){
     res.render('first-template');
@@ -22,16 +19,24 @@ app.get('/first-template', function(req, res){
 
 app.get('/dynamic-view', function(req, res){
     res.render('dynamic', {
-      name: 'Moja dynamiczna strona',
+      name: 'My dynamic page',
       url: 'http://www.google.com',
     });
 });
+
 
 app.get("/auth/google", function(req, res){
   res.render('google');
 });
 
+
+app.get('/store', function (req, res) {
+    res.render('store', {
+      userName: "Kris"
+    });
+});
+
 app.listen(3000);
 app.use(function (req, res, next) {
-    res.status(404).send('Wybacz, nie mogliśmy odnaleźć tego, czego żądasz!');
+    res.status(404).send('Sorry we counld not find what you are looking for!');
 });
